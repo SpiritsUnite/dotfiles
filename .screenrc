@@ -1,0 +1,16 @@
+nethack off
+vbell off
+
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1
+
+attrcolor b ".I"    # allow bold colors - necessary for some reason
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+defbce on    # use current bg color for erased chars
+startup_message off
+defscrollback 30000
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.BW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C:%s%a "
