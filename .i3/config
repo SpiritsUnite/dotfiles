@@ -121,7 +121,7 @@ bindsym $mod+Shift+p restart
 mode "power" {
 	bindsym s exec poweroff
 	bindsym r exec reboot
-	byndsym l exec i3-msg exit
+	bindsym l exec i3-msg exit
 	bindsym c mode "default"
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
