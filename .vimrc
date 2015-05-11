@@ -105,7 +105,6 @@ set shiftwidth=4
 set tabstop=4
 set number
 set guifont="Consolas"
-set t_Co=256
 set makeprg=make\ -Bf\ ~/coding/MakefileD\ %:r
 set autowrite
 set scrolloff=3
