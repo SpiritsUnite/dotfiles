@@ -1,15 +1,3 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Dec 17
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -22,21 +10,45 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
+" backup settings
 set noswapfile
 set backupdir=~/.vim/tmp
-set nowb
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+" persistent undo
+set undofile
+set undodir=~/.vim/undo
+
+" indentation
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+
+" prefix style tab completion
+set wildmode=longest,list,full
+set wildmenu
+
+set number               " show line numbers
+set ruler                " show the cursor position all the time
+set history=50           " keep 50 lines of command line history
+set showcmd              " display incomplete commands
+set incsearch            " do incremental searching
+set scrolloff=3          " always show 3 lines above/below cursor
+set lazyredraw           " speed up repeated commands by not redrawing
+
+" visual settings
+set background=dark      " better colours for dark terminals
+set cursorline           " underline current line
+set synmaxcol=120        " vim's parsing of long lines is trash
+
+set dictionary=/usr/share/dict/words
+
+" hacky enable build c/++ files with :make settings
+" (% -> filename, %:r -> filename without extension)
+set makeprg=make\ -Bf\ ~/coding/Makefile\ %:r
+set autowrite
+
+" C-c suppresses some behaivour (like visual block + I)
+map <C-c> <C-[>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -100,21 +112,3 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
-set shiftwidth=4
-set tabstop=4
-set number
-set guifont="Consolas"
-set makeprg=make\ -Bf\ ~/coding/MakefileD\ %:r
-set autowrite
-set scrolloff=3
-set dictionary=/usr/share/dict/words
-set background=dark
-set softtabstop=4
-map <C-c> <C-[>
-set wildmode=longest,list,full
-set wildmenu
-" colorscheme molokai
-
-set undofile
-set undodir=$HOME/.vim/undo
