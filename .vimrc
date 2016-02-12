@@ -15,8 +15,10 @@ set noswapfile
 set backupdir=~/.vim/tmp
 
 " persistent undo
-set undofile
-set undodir=~/.vim/undo
+if version >= 703
+	set undofile
+	set undodir=~/.vim/undo
+endif
 
 " indentation
 set shiftwidth=4
