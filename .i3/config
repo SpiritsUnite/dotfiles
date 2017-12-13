@@ -27,23 +27,31 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvtcd
 
 # kill focused window
-bindsym $mod+Shift+apostrophe kill
+#bindsym $mod+Shift+apostrophe kill
+bindcode $mod+Shift+24 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+e exec dmenu_run
+#bindsym $mod+e exec dmenu_run
+bindcode $mod+40 exec rofi -show run
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
- bindsym $mod+Shift+e exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+Shift+e exec --no-startup-id i3-dmenu-desktop
+bindcode $mod+Shift+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+#bindsym $mod+h focus left
+#bindsym $mod+j focus down
+#bindsym $mod+k focus up
+#bindsym $mod+l focus right
+bindcode $mod+44 focus left
+bindcode $mod+54 focus down
+bindcode $mod+55 focus up
+bindcode $mod+33 focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -52,10 +60,14 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+#bindsym $mod+Shift+h move left
+#bindsym $mod+Shift+j move down
+#bindsym $mod+Shift+k move up
+#bindsym $mod+Shift+l move right
+bindcode $mod+Shift+44 move left
+bindcode $mod+Shift+54 move down
+bindcode $mod+Shift+55 move up
+bindcode $mod+Shift+33 move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -64,18 +76,24 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+q split h
+#bindsym $mod+q split h
+bindcode $mod+53 split h
 
 # split in vertical orientation
-bindsym $mod+semicolon split v
+#bindsym $mod+semicolon split v
+bindcode $mod+52 split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+u fullscreen
+#bindsym $mod+u fullscreen
+bindcode $mod+41 fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+o layout stacking
-bindsym $mod+comma layout tabbed
-bindsym $mod+period layout toggle split
+#bindsym $mod+o layout stacking
+#bindsym $mod+comma layout tabbed
+#bindsym $mod+period layout toggle split
+bindcode $mod+39 layout stacking
+bindcode $mod+25 layout tabbed
+bindcode $mod+26 layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -84,10 +102,12 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
+bindcode $mod+38 focus parent
 
 # focus the child container
-bindsym $mod+apostrophe focus child
+#bindsym $mod+apostrophe focus child
+bindcode $mod+24 focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -114,23 +134,36 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+comma reload
+#bindsym $mod+Shift+comma reload
+bindcode $mod+Shift+25 reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+p restart
+#bindsym $mod+Shift+p restart
+bindcode $mod+Shift+27 restart
 # exit i3
 mode "power [srl]" {
-	bindsym s exec poweroff
-	bindsym r exec reboot
-	bindsym l exec i3-msg exit
-	bindsym c mode "default"
+	#bindsym s exec poweroff
+	#bindsym r exec reboot
+	#bindsym l exec i3-msg exit
+	#bindsym c mode "default"
+	#bindsym Return mode "default"
+	#bindsym Escape mode "default"
+	bindcode 47 exec poweroff
+	bindcode 32 exec reboot
+	bindcode 33 exec i3-msg exit
+	bindcode 31 mode "default"
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+period mode "power [srl]"
+#bindsym $mod+Shift+period mode "power [srl]"
+bindcode $mod+Shift+26 mode "power [srl]"
 # lock i3
-bindsym $mod+Shift+semicolon exec i3lock -c 111111 -d
+#bindsym $mod+Shift+semicolon exec i3lock -c 111111 -d
+bindcode $mod+Shift+52 exec i3lock -c 111111 -d
 
+# mouse stuff
+# The middle button over a titlebar kills the window
+bindsym --release button2 kill
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -140,10 +173,14 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        #bindsym h resize shrink width 10 px or 10 ppt
+        #bindsym j resize grow height 10 px or 10 ppt
+        #bindsym k resize shrink height 10 px or 10 ppt
+        #bindsym l resize grow width 10 px or 10 ppt
+        bindcode 44 resize shrink width 10 px or 10 ppt
+        bindcode 54 resize grow height 10 px or 10 ppt
+        bindcode 55 resize shrink height 10 px or 10 ppt
+        bindcode 33 resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -156,23 +193,28 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+p mode "resize"
+#bindsym $mod+p mode "resize"
+bindcode $mod+27 mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3blocks
 		position top
 }
 
 # marks
 mode "focused" {
 	# hardcoded focus keybindings
-	bindsym f [class="(?i)firefox" instance="(?i)navigator"] focus; mode "default"
-	bindsym c [class="(?i)firefox" instance="(?i)irc"] focus; mode "default"
+	#bindsym f [class="(?i)firefox" instance="(?i)navigator"] focus; mode "default"
+	#bindsym c [class="(?i)firefox" instance="(?i)irc"] focus; mode "default"
+	bindcode 34 [class="(?i)firefox" instance="(?i)navigator"] focus; mode "default"
+	bindcode 31 [class="(?i)firefox" instance="(?i)irc"] focus; mode "default"
 
-	bindsym u [urgent=latest] focus; mode "default"
+	#bindsym u [urgent=latest] focus; mode "default"
+	bindcode 41 [urgent=latest] focus; mode "default"
 	
+	# do i even use this...
 	# keybindings for marking and jumping to clients
 	bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '; mode "default"
 	bindsym o exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '; mode "default"
@@ -196,42 +238,44 @@ mode "focused" {
 	bindsym Escape mode "default"
 }
 
-bindsym $mod+y mode "focused"
+#bindsym $mod+y mode "focused"
+bindcode $mod+28 mode "focused"
 
 # volume
-bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -- +2% && killall -USR1 i3status"
-bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -- -2% && killall -USR1 i3status"
-bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -USR1 i3status"
+#bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +2% && killall -USR1 i3status"
+#bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -2% && killall -USR1 i3status"
+#bindsym XF86AudioRaiseVolume exec "amixer -D hw:0 set Master 2%+ && killall -USR1 i3status"
+#bindsym XF86AudioLowerVolume exec "amixer -D hw:0 set Master 2%- && killall -USR1 i3status"
+#bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -USR1 i3status"
+#bindsym $mod+Next exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -USR1 i3status"
+
+bindsym XF86AudioRaiseVolume exec "amixer -D hw:0 set Master 2%+ && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec "amixer -D hw:0 set Master 2%- && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks"
+bindsym $mod+Next exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks"
 
 # scratchpad
-bindsym $mod+Shift+bracketleft move scratchpad
-bindsym $mod+bracketleft scratchpad show
+#bindsym $mod+Shift+bracketleft move scratchpad
+#bindsym $mod+bracketleft scratchpad show
+bindcode $mod+Shift+20 move scratchpad
+bindcode $mod+20 scratchpad show
 
-bindsym --release Print exec --no-startup-id gnome-screenshot -i
+bindsym Print exec --no-startup-id gnome-screenshot -i
+bindsym Shift+Print exec --no-startup-id gnome-screenshot -p
+#bindsym --release Shift+Print exec --no-startup-id gnome-screenshot -a
+#bindsym --release Mod1+Print exec --no-startup-id gnome-screenshot -w
+#bindsym --release Mod1+Shift+Print exec --no-startup-id gnome-screenshot -i
 
-assign [class="^Firefox$" instance="^Irc$"] 2
+assign [class="^Firefox" instance="^Irc$"] 2
 assign [class="^Steam$"] 9
 
-for_window [class="^Gvbam$" ] floating enable
-for_window [class="^ppsspp$" ] floating enable
-for_window [class="^org-fenix-llanfair-Llanfair$" ] floating enable
-for_window [window_role="^bubble$" ] floating enable
-for_window [class="(?i)pref"] floating enable
-for_window [window_role="(?i)pref"] floating enable
-
 # startup
-exec_always --no-startup-id skype
-exec --no-startup-id imwheel -k -b "4 5"
-exec --no-startup-id dropbox start
-exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
 exec --no-startup-id thunar --daemon
-exec --no-startup-id pasystray
 exec --no-startup-id xset m 1/1 2
 exec --no-startup-id setxkbmap dvorak,us pc105 , grp:alt_caps_toggle,caps:escape,shift:both_capslock
+exec --no-startup-id xbindkeys
+exec --no-startup-id volumeicon
+#exec_always --no-startup-id killall pasystray
+#exec_always --no-startup-id sleep 5 && pasystray
 
-# preterm
-# for_window [class="(?i)gnome-terminal" window_role="^user$"] move to scratchpad
-bindsym $mod+Control+e [window_role="^scratchpad$"] scratchpad show
-exec --no-startup-id ~/.i3/scratchpad/perpetual_terminal.sh
-for_window [window_role="^scratchpad$"] move scratchpad
+hide_edge_borders both
