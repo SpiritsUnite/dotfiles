@@ -7,12 +7,18 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+set notimeout
+set ttimeout
+set ttimeoutlen=100
+
+set splitright
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 " backup settings
-set noswapfile
-set backupdir=~/.vim/tmp
+set directory^=~/.vim/swp//
+set backupdir^=~/.vim/tmp
 
 " persistent undo
 if version >= 703
@@ -28,6 +34,7 @@ set softtabstop=4
 " prefix style tab completion
 set wildmode=longest,list,full
 set wildmenu
+set wildignore+=*.o
 
 set number               " show line numbers
 set ruler                " show the cursor position all the time
@@ -41,7 +48,13 @@ set lazyredraw           " speed up repeated commands by not redrawing
 set background=dark      " better colours for dark terminals
 set cursorline           " underline current line
 set synmaxcol=120        " vim's parsing of long lines is trash
+set list
+set listchars=tab:\|\ ,trail:·
 
+set textwidth=80
+set colorcolumn=+1
+
+set nojoinspaces
 set dictionary=/usr/share/dict/words
 
 " hacky enable build c/++ files with :make settings
@@ -50,7 +63,10 @@ set makeprg=make\ -Bf\ ~/coding/Makefile\ %:r
 set autowrite
 
 " C-c suppresses some behaivour (like visual block + I)
-map <C-c> <C-[>
+inoremap <C-c> <C-[>
+noremap <C-c> <C-[>
+" pls go
+let g:ftplugin_sql_omni_key = '<C-j>'
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -100,6 +116,8 @@ if has("autocmd")
 	augroup END
 
 	autocmd FileType python set expandtab
+	autocmd FileType haskell set expandtab ts=2 sts=2 sw=2
+	autocmd FileType html* set expandtab ts=2 sts=2 sw=2
 
 else
 
@@ -118,3 +136,5 @@ endif
 if filereadable($HOME . "/.vimrc.local")
 	source $HOME/.vimrc.local
 endif
+
+set fileencodings=ucs-bom,utf-8,sjis,default,latin1
